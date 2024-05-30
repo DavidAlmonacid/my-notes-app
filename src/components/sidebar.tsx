@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { createCollection } from "@/actions/collections-actions";
 import { Button } from "./ui/button";
@@ -13,6 +13,28 @@ interface Props {
 
 export function Sidebar({ children }: Props) {
   const [showInput, setShowInput] = useState(false);
+  const plusButtonRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleOpenInput = () => {
+    if (!showInput) {
+      setShowInput(true);
+    } else {
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleCloseInput = () => {
+    setShowInput(false);
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (event.relatedTarget === plusButtonRef.current) {
+      event.preventDefault();
+    } else {
+      handleCloseInput();
+    }
+  };
 
   return (
     <section className="w-64 border-r border-r-white/15 py-6 px-4">
@@ -20,25 +42,27 @@ export function Sidebar({ children }: Props) {
         <span>Collections</span>
 
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className="border border-white rounded-md size-6"
+          className="size-fit p-1"
           title="Create a new collection"
-          onClick={() => setShowInput(true)}
+          ref={plusButtonRef}
+          onClick={handleOpenInput}
         >
-          <Plus width={20} />
+          <Plus className="size-5" />
         </Button>
       </h2>
 
       {showInput && (
-        <form action={createCollection} onSubmit={() => setShowInput(false)}>
+        <form action={createCollection} onSubmit={handleCloseInput}>
           <Input
             type="text"
             name="collectionName"
             placeholder="Collection name"
-            className="px-2.5 py-1 mt-3 h-fit"
+            className="px-2.5 py-1 mt-3 h-fit bg-input"
             autoFocus
-            onBlur={() => setShowInput(false)}
+            ref={inputRef}
+            onBlur={handleBlur}
           />
         </form>
       )}
