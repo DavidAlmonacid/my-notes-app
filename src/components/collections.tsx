@@ -1,7 +1,9 @@
-import { Plus } from "lucide-react";
-import { Button } from "./ui/button";
 import { createClient } from "edgedb";
+import { Plus } from "lucide-react";
+
 import e from "@root/dbschema/edgeql-js";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 const client = createClient();
 
