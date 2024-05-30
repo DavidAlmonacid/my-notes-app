@@ -3,6 +3,7 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 
+import { createCollection } from "@/actions/collections-actions";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -30,12 +31,14 @@ export function Sidebar({ children }: Props) {
       </h2>
 
       {showInput && (
-        <form>
+        <form action={createCollection} onSubmit={() => setShowInput(false)}>
           <Input
             type="text"
+            name="collectionName"
             placeholder="Collection name"
             className="px-2.5 py-1 mt-3 h-fit"
             autoFocus
+            onBlur={() => setShowInput(false)}
           />
         </form>
       )}
