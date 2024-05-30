@@ -1,11 +1,14 @@
 import { Collections } from "@/components/collections";
+import { Sidebar } from "@/components/sidebar";
 
 export default function Home() {
   return (
     <main className="flex h-full">
-      <Collections />
+      <Sidebar>
+        <Collections />
+      </Sidebar>
 
-      <div className="grow">Monaco Editor</div>
+      <div className="grow">Note content</div>
     </main>
   );
 }
