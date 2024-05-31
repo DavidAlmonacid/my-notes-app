@@ -44,6 +44,7 @@ export function Sidebar({ children }: Props) {
         <Button
           variant="outline"
           size="icon"
+          type="button"
           className="size-fit p-1"
           title="Create a new collection"
           ref={plusButtonRef}
