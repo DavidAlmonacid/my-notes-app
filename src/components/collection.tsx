@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
+import { RenameInputCollection } from "./rename-input-collection";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
@@ -17,9 +17,18 @@ interface Props {
 
 export function Collection({ collection }: Props) {
   const [isOpened, setIsOpened] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleToggle = (event: React.MouseEvent<HTMLDetailsElement>) => {
     setIsOpened(event.currentTarget.open);
+  };
+
+  const handleRenameCollection = () => {
+    setIsEditing(true);
+  };
+
+  const handleEndRenameCollection = () => {
+    setIsEditing(false);
   };
 
   return (
@@ -30,7 +39,14 @@ export function Collection({ collection }: Props) {
             <ChevronRight
               className={clsx("w-full max-w-5 h-5", isOpened && "rotate-90")}
             />
-            <span>{collection.name}</span>
+            {isEditing ? (
+              <RenameInputCollection
+                collection={collection}
+                endRename={handleEndRenameCollection}
+              />
+            ) : (
+              <span>{collection.name}</span>
+            )}
           </div>
 
           <Popover>
@@ -48,7 +64,12 @@ export function Collection({ collection }: Props) {
 
             <PopoverContent className="w-fit p-3">
               <section className="flex flex-col gap-y-2 text-sm">
-                <Button variant="ghost" size="sm" type="button">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  type="button"
+                  onClick={handleRenameCollection}
+                >
                   Rename
                 </Button>
 
