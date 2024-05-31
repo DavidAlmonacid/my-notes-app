@@ -38,7 +38,7 @@ export function Sidebar({ children }: Props) {
 
   return (
     <section className="w-64 border-r border-r-white/15 py-6 px-4">
-      <h2 className="flex justify-around py-4 text-lg font-medium">
+      <h2 className="flex items-center justify-around py-4 text-lg font-medium">
         <span>Collections</span>
 
         <Button
