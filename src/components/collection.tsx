@@ -3,9 +3,10 @@
 import clsx from "clsx";
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useState } from "react";
+
 import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Input } from "./ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
   collection: {
