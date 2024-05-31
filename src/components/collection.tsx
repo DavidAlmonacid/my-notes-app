@@ -19,7 +19,7 @@ export function Collection({ collection }: Props) {
   };
 
   return (
-    <details onToggle={handleToggle}>
+    <details className="bg-accent rounded-md" onToggle={handleToggle}>
       <summary className="appearance-auto">
         <div className="flex items-center gap-x-0.5 py-2">
           <ChevronRight className={clsx("size-5", isOpened && "rotate-90")} />
