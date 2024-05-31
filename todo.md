@@ -1,3 +1,3 @@
 - [x] Add background color to the collection to make it more readable
-- [ ] Add a button to the collection that shows a popover that allows renaming and deleting the collection
+- [x] Add a button to the collection that shows a popover that allows renaming and deleting the collection
 - [ ] Add notes to the collection
