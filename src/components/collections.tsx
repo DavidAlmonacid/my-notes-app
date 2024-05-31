@@ -18,11 +18,11 @@ export async function Collections() {
       {collections.length === 0 ? (
         <p>No collections found</p>
       ) : (
-        <ul>
+        <div className="flex flex-col gap-y-1.5">
           {collections.map((collection) => (
             <Collection key={collection.id} collection={collection} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
