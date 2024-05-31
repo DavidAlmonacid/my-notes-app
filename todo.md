@@ -1,5 +1,7 @@
 - [x] Add background color to the collection to make it more readable
 - [x] Add a button to the collection that shows a popover that allows renaming and deleting the collection
-- [ ] Add a server action to rename the collection
+- [x] Add a server action to rename the collection
+- [ ] Add a server action to delete the collection
+- [ ] Add interfaces to improve the type safety
 - [ ] Add a button to the collection that allows adding a note to the collection
 - [ ] Add notes to the collection
