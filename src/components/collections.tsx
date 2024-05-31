@@ -1,5 +1,7 @@
 import { createClient } from "edgedb";
+
 import e from "@root/dbschema/edgeql-js";
+import { Collection } from "./collection";
 
 const client = createClient();
 
@@ -18,9 +20,7 @@ export async function Collections() {
       ) : (
         <ul>
           {collections.map((collection) => (
-            <li key={collection.id} className="py-2">
-              {collection.name}
-            </li>
+            <Collection key={collection.id} collection={collection} />
           ))}
         </ul>
       )}
