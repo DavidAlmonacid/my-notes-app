@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
+import { DeleteCollectionButton } from "./delete-collection-button";
 import { RenameInputCollection } from "./rename-input-collection";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -73,9 +74,9 @@ export function Collection({ collection }: Props) {
                   Rename
                 </Button>
 
-                <Button variant="destructive" size="sm" type="button">
+                <DeleteCollectionButton collectionId={collection.id}>
                   Delete
-                </Button>
+                </DeleteCollectionButton>
               </section>
             </PopoverContent>
           </Popover>
