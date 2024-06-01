@@ -22,6 +22,7 @@ module default {
     required updated_at: datetime {
       default := (datetime_current());
     };
+    required collection_id: str;
     required collection: Collection;
   }
 }
