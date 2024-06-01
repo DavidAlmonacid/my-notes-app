@@ -14,9 +14,10 @@ interface Props {
     id: string;
     name: string;
   };
+  children: React.ReactNode;
 }
 
-export function Collection({ collection }: Props) {
+export function Collection({ collection, children }: Props) {
   const [isOpened, setIsOpened] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -83,7 +84,7 @@ export function Collection({ collection }: Props) {
         </div>
       </summary>
 
-      <p>Collection ID: {collection.id}</p>
+      {children}
     </details>
   );
 }
