@@ -2,6 +2,7 @@ import { createClient } from "edgedb";
 
 import e from "@root/dbschema/edgeql-js";
 import { Collection } from "./collection";
+import { Notes } from "./notes";
 
 const client = createClient();
 
@@ -24,7 +25,9 @@ export async function Collections() {
       ) : (
         <div className="flex flex-col gap-y-2">
           {collections.map((collection) => (
-            <Collection key={collection.id} collection={collection} />
+            <Collection key={collection.id} collection={collection}>
+              <Notes />
+            </Collection>
           ))}
         </div>
       )}
