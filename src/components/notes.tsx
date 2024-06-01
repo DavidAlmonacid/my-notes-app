@@ -9,9 +9,10 @@ import { Input } from "./ui/input";
 
 interface Props {
   collectionId: string;
+  notes: any[];
 }
 
-export function Notes({ collectionId }: Props) {
+export function Notes({ notes, collectionId }: Props) {
   const [showInput, setShowInput] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const addNoteButtonRef = useRef<HTMLButtonElement>(null);
@@ -36,6 +37,10 @@ export function Notes({ collectionId }: Props) {
     }
   };
 
+  const filteredNotes = notes.filter((note) => {
+    return note.collection_id === collectionId;
+  });
+
   return (
     <div className="py-4 px-7">
       {showInput && (
@@ -53,7 +58,10 @@ export function Notes({ collectionId }: Props) {
         </form>
       )}
 
-      <h1>Notes</h1>
+      <ul>
+        {filteredNotes.length > 0 &&
+          filteredNotes.map((note) => <li key={note.id}>{note.title}</li>)}
+      </ul>
 
       <Button
         variant="secondary"
