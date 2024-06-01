@@ -18,6 +18,20 @@ export async function Collections() {
 
   const collections = await selectCollections.run(client);
 
+  const selectNotes = e.select(e.Note, (note) => ({
+    id: true,
+    title: true,
+    content: true,
+    updated_at: true,
+    collection_id: true,
+    order_by: {
+      expression: note.created_at,
+      direction: e.ASC
+    }
+  }));
+
+  const notes = await selectNotes.run(client);
+
   return (
     <div className="py-4 text-sm">
       {collections.length === 0 ? (
@@ -26,7 +40,7 @@ export async function Collections() {
         <div className="flex flex-col gap-y-2">
           {collections.map((collection) => (
             <Collection key={collection.id} collection={collection}>
-              <Notes collectionId={collection.id} />
+              <Notes notes={notes} collectionId={collection.id} />
             </Collection>
           ))}
         </div>
