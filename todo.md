@@ -4,5 +4,5 @@
 - [x] Add a server action to delete the collection
 - [x] Add a button to the collection that allows adding a note to the collection
 - [x] List the notes in its respective collection
-- [ ] Add interfaces to improve the type safety
+- [x] Add interfaces to improve the type safety
 - [ ] Add notes to the collection

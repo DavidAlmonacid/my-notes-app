@@ -4,12 +4,13 @@ import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 
 import { createNote } from "@/actions/note-actions";
+import type { Note } from "@root/dbschema/interfaces";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 interface Props {
   collectionId: string;
-  notes: any[];
+  notes: Partial<Note>[];
 }
 
 export function Notes({ notes, collectionId }: Props) {

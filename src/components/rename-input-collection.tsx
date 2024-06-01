@@ -1,11 +1,9 @@
 import { updateCollectionName } from "@/actions/collection-actions";
+import type { Collection } from "@root/dbschema/interfaces";
 import { Input } from "./ui/input";
 
 interface Props {
-  collection: {
-    id: string;
-    name: string;
-  };
+  collection: Pick<Collection, "id" | "name">;
   endRename: () => void;
 }
 

@@ -1,6 +1,7 @@
 import { createClient } from "edgedb";
 
 import e from "@root/dbschema/edgeql-js";
+import type { Note } from "@root/dbschema/interfaces";
 import { Collection } from "./collection";
 import { Notes } from "./notes";
 
@@ -30,7 +31,7 @@ export async function Collections() {
     }
   }));
 
-  const notes = await selectNotes.run(client);
+  const notes: Partial<Note>[] = await selectNotes.run(client);
 
   return (
     <div className="py-4 text-sm">
