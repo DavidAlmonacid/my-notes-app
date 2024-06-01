@@ -26,7 +26,7 @@ export async function Collections() {
         <div className="flex flex-col gap-y-2">
           {collections.map((collection) => (
             <Collection key={collection.id} collection={collection}>
-              <Notes />
+              <Notes collectionId={collection.id} />
             </Collection>
           ))}
         </div>
