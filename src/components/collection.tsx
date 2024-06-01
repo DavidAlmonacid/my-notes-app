@@ -33,7 +33,7 @@ export function Collection({ collection }: Props) {
   };
 
   return (
-    <details className="bg-accent rounded-md" onToggle={handleToggle}>
+    <details className="bg-accent/80 rounded-md" onToggle={handleToggle}>
       <summary className="appearance-auto">
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center gap-x-0.5 pr-1">
