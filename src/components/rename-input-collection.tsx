@@ -18,7 +18,6 @@ export function RenameInputCollection({ collection, endRename }: Props) {
         className="h-fit p-0.5"
         defaultValue={collection.name}
         name="collectionName"
-        required
         autoFocus
         onBlur={endRename}
       />
