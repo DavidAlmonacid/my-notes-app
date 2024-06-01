@@ -5,4 +5,6 @@
 - [x] Add a button to the collection that allows adding a note to the collection
 - [x] List the notes in its respective collection
 - [x] Add interfaces to improve the type safety
+- [ ] Style the note list
+- [ ] Separate a single note to its own component
 - [ ] Add notes to the collection
