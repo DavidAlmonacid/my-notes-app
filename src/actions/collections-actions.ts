@@ -42,3 +42,15 @@ export async function updateCollectionName(formData: FormData) {
 
   revalidatePath("/");
 }
+
+export async function deleteCollection(formData: FormData) {
+  const collectionId = formData.get("collectionId") as string;
+
+  const query = e.delete(e.Collection, () => ({
+    filter_single: { id: collectionId }
+  }));
+
+  await query.run(client);
+
+  revalidatePath("/");
+}
