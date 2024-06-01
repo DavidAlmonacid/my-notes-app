@@ -3,7 +3,7 @@
 import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { createCollection } from "@/actions/collections-actions";
+import { createCollection } from "@/actions/collection-actions";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 

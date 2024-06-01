@@ -1,4 +1,4 @@
-import { deleteCollection } from "@/actions/collections-actions";
+import { deleteCollection } from "@/actions/collection-actions";
 import { Button } from "./ui/button";
 
 interface Props {

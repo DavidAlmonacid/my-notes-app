@@ -1,4 +1,4 @@
-import { updateCollectionName } from "@/actions/collections-actions";
+import { updateCollectionName } from "@/actions/collection-actions";
 import { Input } from "./ui/input";
 
 interface Props {
