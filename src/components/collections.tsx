@@ -6,9 +6,13 @@ import { Collection } from "./collection";
 const client = createClient();
 
 export async function Collections() {
-  const selectCollections = e.select(e.Collection, () => ({
+  const selectCollections = e.select(e.Collection, (collection) => ({
     id: true,
-    name: true
+    name: true,
+    order_by: {
+      expression: collection.created_at,
+      direction: e.ASC
+    }
   }));
 
   const collections = await selectCollections.run(client);
