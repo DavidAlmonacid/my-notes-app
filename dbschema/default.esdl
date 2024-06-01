@@ -12,7 +12,9 @@ module default {
 
   type Note {
     required title: str;
-    required content: str;
+    required content: str {
+      default := "";
+    };
     required created_at: datetime {
       default := (datetime_current());
       readonly := true;
