@@ -17,10 +17,13 @@ export async function createNote(formData: FormData) {
 
   const query = e.insert(e.Note, {
     title: noteTitle,
+    collection_id: collectionId,
     collection: e.select(e.Collection, () => ({
       filter_single: { id: collectionId }
     }))
   });
 
   await query.run(client);
+
+  revalidatePath("/");
 }
