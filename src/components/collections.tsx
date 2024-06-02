@@ -34,7 +34,7 @@ export async function Collections() {
   const notes: Partial<Note>[] = await selectNotes.run(client);
 
   return (
-    <div className="py-4 text-sm">
+    <div className="pt-4 text-sm">
       {collections.length === 0 ? (
         <p>No collections found</p>
       ) : (

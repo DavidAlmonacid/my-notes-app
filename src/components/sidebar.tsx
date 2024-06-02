@@ -37,8 +37,8 @@ export function Sidebar({ children }: Props) {
   };
 
   return (
-    <section className="w-64 border-r border-r-white/15 py-6 px-4">
-      <h2 className="flex items-center justify-around py-4 text-lg font-medium">
+    <section className="w-64 h-[calc(100vh-60px)] border-r border-r-white/15 px-4 pb-6 overflow-auto">
+      <h2 className="sticky top-0 flex items-center justify-around w-full py-4 bg-background text-lg font-medium z-10">
         <span>Collections</span>
 
         <Button
@@ -60,7 +60,7 @@ export function Sidebar({ children }: Props) {
             type="text"
             name="collectionName"
             placeholder="Collection name"
-            className="px-2.5 py-1 mt-3 h-fit bg-input"
+            className="px-2.5 py-1.5 mt-3 h-fit bg-input"
             autoFocus
             ref={inputRef}
             onBlur={handleBlur}

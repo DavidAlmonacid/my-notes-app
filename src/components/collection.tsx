@@ -55,7 +55,7 @@ export function Collection({ collection, children }: Props) {
                 variant="ghost"
                 size="icon"
                 type="button"
-                className="size-fit p-0.5"
+                className="size-fit p-0.5 opacity-80"
                 title="Options"
               >
                 <EllipsisVertical className="size-5" />

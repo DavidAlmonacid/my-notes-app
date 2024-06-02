@@ -43,7 +43,7 @@ export function Notes({ notes, collectionId }: Props) {
   });
 
   return (
-    <div className="flex flex-col gap-y-4 py-4 px-7">
+    <div className="flex flex-col gap-y-4 py-4 px-7 select-none">
       {showInput && (
         <form action={createNote} onSubmit={handleCloseInput}>
           <input type="hidden" name="collectionId" value={collectionId} />
@@ -51,7 +51,7 @@ export function Notes({ notes, collectionId }: Props) {
             type="text"
             name="noteTitle"
             placeholder="Note title"
-            className="px-1 py-0.5 h-fit bg-input"
+            className="p-1 h-fit bg-input"
             autoFocus
             ref={inputRef}
             onBlur={handleBlur}
@@ -66,7 +66,7 @@ export function Notes({ notes, collectionId }: Props) {
               key={note.id}
               variant="ghost"
               type="button"
-              className="justify-start"
+              className="justify-start h-9"
             >
               {note.title}
             </Button>
