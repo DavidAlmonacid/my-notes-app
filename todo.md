@@ -6,5 +6,3 @@
 - [x] List the notes in its respective collection
 - [x] Add interfaces to improve the type safety
 - [x] Style the note list
-- [ ] Separate a single note to its own component
-- [ ] Add notes to the collection
