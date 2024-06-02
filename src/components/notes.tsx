@@ -43,7 +43,7 @@ export function Notes({ notes, collectionId }: Props) {
   });
 
   return (
-    <div className="py-4 px-7">
+    <div className="flex flex-col gap-y-4 py-4 px-7">
       {showInput && (
         <form action={createNote} onSubmit={handleCloseInput}>
           <input type="hidden" name="collectionId" value={collectionId} />
@@ -59,10 +59,20 @@ export function Notes({ notes, collectionId }: Props) {
         </form>
       )}
 
-      <ul>
-        {filteredNotes.length > 0 &&
-          filteredNotes.map((note) => <li key={note.id}>{note.title}</li>)}
-      </ul>
+      {filteredNotes.length > 0 && (
+        <section className="flex flex-col">
+          {filteredNotes.map((note) => (
+            <Button
+              key={note.id}
+              variant="ghost"
+              type="button"
+              className="justify-start"
+            >
+              {note.title}
+            </Button>
+          ))}
+        </section>
+      )}
 
       <Button
         variant="secondary"
