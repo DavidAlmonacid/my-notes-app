@@ -1,12 +1,18 @@
 "use client";
 
-import { Plus } from "lucide-react";
+import { Plus, TextCursorInput, Trash } from "lucide-react";
 import { useRef, useState } from "react";
 
 import { createNote } from "@/actions/note-actions";
 import type { Note } from "@root/dbschema/interfaces";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger
+} from "./ui/context-menu";
 
 interface Props {
   collectionId: string;
@@ -62,14 +68,28 @@ export function Notes({ notes, collectionId }: Props) {
       {filteredNotes.length > 0 && (
         <section className="flex flex-col">
           {filteredNotes.map((note) => (
-            <Button
-              key={note.id}
-              variant="ghost"
-              type="button"
-              className="justify-start h-9"
-            >
-              {note.title}
-            </Button>
+            <ContextMenu key={note.id}>
+              <ContextMenuTrigger>
+                <Button
+                  variant="ghost"
+                  type="button"
+                  className="justify-start h-9 w-full"
+                >
+                  {note.title}
+                </Button>
+              </ContextMenuTrigger>
+
+              <ContextMenuContent className="p-2 min-w-36">
+                <ContextMenuItem className="justify-between">
+                  <span>Rename</span>
+                  <TextCursorInput className="size-5" />
+                </ContextMenuItem>
+                <ContextMenuItem className="justify-between">
+                  <span>Delete</span>
+                  <Trash className="size-5 p-[1px]" />
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
           ))}
         </section>
       )}
