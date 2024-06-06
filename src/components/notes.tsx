@@ -80,13 +80,28 @@ export function Notes({ notes, collectionId }: Props) {
               </ContextMenuTrigger>
 
               <ContextMenuContent className="p-2 min-w-36">
-                <ContextMenuItem className="justify-between">
-                  <span>Rename</span>
-                  <TextCursorInput className="size-5" />
+                <ContextMenuItem className="p-0">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    type="button"
+                    className="px-2 py-1.5 h-fit w-full justify-between"
+                  >
+                    <span>Rename</span>
+                    <TextCursorInput className="size-5" />
+                  </Button>
                 </ContextMenuItem>
-                <ContextMenuItem className="justify-between">
-                  <span>Delete</span>
-                  <Trash className="size-5 p-[1px]" />
+
+                <ContextMenuItem className="p-0">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    type="button"
+                    className="px-2 py-1.5 h-fit w-full justify-between"
+                  >
+                    <span>Delete</span>
+                    <Trash className="size-5 p-[1px]" />
+                  </Button>
                 </ContextMenuItem>
               </ContextMenuContent>
             </ContextMenu>
