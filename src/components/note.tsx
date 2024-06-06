@@ -15,7 +15,7 @@ interface Props {
 
 export function Note({ note }: Props) {
   return (
-    <ContextMenu key={note.id}>
+    <ContextMenu>
       <ContextMenuTrigger>
         <Button
           variant="ghost"
