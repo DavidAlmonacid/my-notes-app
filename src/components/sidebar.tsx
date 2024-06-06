@@ -37,7 +37,7 @@ export function Sidebar({ children }: Props) {
   };
 
   return (
-    <section className="w-64 h-[calc(100vh-60px)] border-r border-r-white/15 px-4 pb-6 overflow-auto">
+    <section className="w-64 h-[calc(100vh-61px)] border-r border-r-white/15 px-4 pb-6 overflow-auto">
       <h2 className="sticky top-0 flex items-center justify-around w-full py-4 bg-background text-lg font-medium z-10">
         <span>Collections</span>
 
