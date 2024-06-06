@@ -1,22 +1,17 @@
 "use client";
 
-import { Plus, TextCursorInput, Trash } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 
 import { createNote } from "@/actions/note-actions";
-import type { Note } from "@root/dbschema/interfaces";
+import type { Note as INote } from "@root/dbschema/interfaces";
+import { Note } from "./note";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger
-} from "./ui/context-menu";
 
 interface Props {
   collectionId: string;
-  notes: Partial<Note>[];
+  notes: Partial<INote>[];
 }
 
 export function Notes({ notes, collectionId }: Props) {
@@ -68,43 +63,7 @@ export function Notes({ notes, collectionId }: Props) {
       {filteredNotes.length > 0 && (
         <section className="flex flex-col">
           {filteredNotes.map((note) => (
-            <ContextMenu key={note.id}>
-              <ContextMenuTrigger>
-                <Button
-                  variant="ghost"
-                  type="button"
-                  className="justify-start h-9 w-full"
-                >
-                  {note.title}
-                </Button>
-              </ContextMenuTrigger>
-
-              <ContextMenuContent className="p-2 min-w-36">
-                <ContextMenuItem className="p-0">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    type="button"
-                    className="px-2 py-1.5 h-fit w-full justify-between"
-                  >
-                    <span>Rename</span>
-                    <TextCursorInput className="size-5" />
-                  </Button>
-                </ContextMenuItem>
-
-                <ContextMenuItem className="p-0">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    type="button"
-                    className="px-2 py-1.5 h-fit w-full justify-between"
-                  >
-                    <span>Delete</span>
-                    <Trash className="size-5 p-[1px]" />
-                  </Button>
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
+            <Note key={note.id} note={note} />
           ))}
         </section>
       )}
