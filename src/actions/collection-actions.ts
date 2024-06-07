@@ -1,11 +1,11 @@
 "use server";
 
-import { createClient } from "edgedb";
+// import { createClient } from "edgedb";
 import { revalidatePath } from "next/cache";
 
-import e from "@root/dbschema/edgeql-js";
+// import e from "@root/dbschema/edgeql-js";
 
-const client = createClient();
+// const client = createClient();
 
 export async function createCollection(formData: FormData) {
   const collectionName = formData.get("collectionName") as string;
@@ -14,11 +14,11 @@ export async function createCollection(formData: FormData) {
     return;
   }
 
-  const query = e.insert(e.Collection, {
+  /* const query = e.insert(e.Collection, {
     name: collectionName
   });
 
-  await query.run(client);
+  await query.run(client); */
 
   revalidatePath("/");
 }
@@ -31,14 +31,14 @@ export async function updateCollectionName(formData: FormData) {
     return;
   }
 
-  const query = e.update(e.Collection, () => ({
+  /* const query = e.update(e.Collection, () => ({
     filter_single: { id: collectionId },
     set: {
       name: collectionName
     }
   }));
 
-  await query.run(client);
+  await query.run(client); */
 
   revalidatePath("/");
 }
@@ -46,11 +46,11 @@ export async function updateCollectionName(formData: FormData) {
 export async function deleteCollection(formData: FormData) {
   const collectionId = formData.get("collectionId") as string;
 
-  const query = e.delete(e.Collection, () => ({
+  /* const query = e.delete(e.Collection, () => ({
     filter_single: { id: collectionId }
   }));
 
-  await query.run(client);
+  await query.run(client); */
 
   revalidatePath("/");
 }

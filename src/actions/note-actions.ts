@@ -1,11 +1,11 @@
 "use server";
 
-import { createClient } from "edgedb";
+// import { createClient } from "edgedb";
 import { revalidatePath } from "next/cache";
 
-import e from "@root/dbschema/edgeql-js";
+// import e from "@root/dbschema/edgeql-js";
 
-const client = createClient();
+// const client = createClient();
 
 export async function createNote(formData: FormData) {
   const noteTitle = formData.get("noteTitle") as string;
@@ -15,7 +15,7 @@ export async function createNote(formData: FormData) {
     return;
   }
 
-  const query = e.insert(e.Note, {
+  /* const query = e.insert(e.Note, {
     title: noteTitle,
     collection_id: collectionId,
     collection: e.select(e.Collection, () => ({
@@ -23,7 +23,7 @@ export async function createNote(formData: FormData) {
     }))
   });
 
-  await query.run(client);
+  await query.run(client); */
 
   revalidatePath("/");
 }

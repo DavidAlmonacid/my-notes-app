@@ -4,14 +4,13 @@ import clsx from "clsx";
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
-import type { Collection } from "@root/dbschema/interfaces";
 import { DeleteCollectionButton } from "./delete-collection-button";
 import { RenameInputCollection } from "./rename-input-collection";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
-  collection: Pick<Collection, "id" | "name">;
+  // collection: Pick<Collection, "id" | "name">;
   children: React.ReactNode;
 }
 

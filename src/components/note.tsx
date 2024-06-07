@@ -1,6 +1,5 @@
 import { TextCursorInput, Trash } from "lucide-react";
 
-import type { Note } from "@root/dbschema/interfaces";
 import { Button } from "./ui/button";
 import {
   ContextMenu,
@@ -10,7 +9,7 @@ import {
 } from "./ui/context-menu";
 
 interface Props {
-  note: Partial<Note>;
+  // note: Partial<Note>;
 }
 
 export function Note({ note }: Props) {
@@ -54,3 +53,32 @@ export function Note({ note }: Props) {
     </ContextMenu>
   );
 }
+
+/* module default {
+  type Collection {
+    required name: str;
+    required created_at: datetime {
+      default := (datetime_current());
+      readonly := true;
+    };
+    required updated_at: datetime {
+      default := (datetime_current());
+    };
+  }
+
+  type Note {
+    required title: str;
+    required content: str {
+      default := "";
+    };
+    required created_at: datetime {
+      default := (datetime_current());
+      readonly := true;
+    };
+    required updated_at: datetime {
+      default := (datetime_current());
+    };
+    required collection_id: str;
+    required collection: Collection;
+  }
+} */

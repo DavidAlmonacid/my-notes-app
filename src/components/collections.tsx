@@ -1,14 +1,13 @@
-import { createClient } from "edgedb";
+/* import { createClient } from "edgedb";
 
-import e from "@root/dbschema/edgeql-js";
-import type { Note } from "@root/dbschema/interfaces";
+import e from "@root/dbschema/edgeql-js"; */
 import { Collection } from "./collection";
 import { Notes } from "./notes";
 
-const client = createClient();
+// const client = createClient();
 
 export async function Collections() {
-  const selectCollections = e.select(e.Collection, (collection) => ({
+  /* const selectCollections = e.select(e.Collection, (collection) => ({
     id: true,
     name: true,
     order_by: {
@@ -31,7 +30,7 @@ export async function Collections() {
     }
   }));
 
-  const notes: Partial<Note>[] = await selectNotes.run(client);
+  const notes: Partial<Note>[] = await selectNotes.run(client); */
 
   return (
     <div className="pt-4 text-sm">
