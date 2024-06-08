@@ -1,36 +1,25 @@
-/* import { createClient } from "edgedb";
-
-import e from "@root/dbschema/edgeql-js"; */
+import prisma from "@/lib/prisma";
 import { Collection } from "./collection";
-import { Notes } from "./notes";
-
-// const client = createClient();
 
 export async function Collections() {
-  /* const selectCollections = e.select(e.Collection, (collection) => ({
-    id: true,
-    name: true,
-    order_by: {
-      expression: collection.created_at,
-      direction: e.ASC
-    }
-  }));
+  // const selectNotes = e.select(e.Note, (note) => ({
+  //   id: true,
+  //   title: true,
+  //   content: true,
+  //   updated_at: true,
+  //   collection_id: true,
+  //   order_by: {
+  //     expression: note.created_at,
+  //     direction: e.ASC
+  //   }
+  // }));
 
-  const collections = await selectCollections.run(client);
+  // const notes: Partial<Note>[] = await selectNotes.run(client);
 
-  const selectNotes = e.select(e.Note, (note) => ({
-    id: true,
-    title: true,
-    content: true,
-    updated_at: true,
-    collection_id: true,
-    order_by: {
-      expression: note.created_at,
-      direction: e.ASC
-    }
-  }));
-
-  const notes: Partial<Note>[] = await selectNotes.run(client); */
+  const collections = await prisma.collection.findMany({
+    select: { id: true, name: true },
+    orderBy: { createdAt: "asc" }
+  });
 
   return (
     <div className="pt-4 text-sm">
@@ -40,7 +29,7 @@ export async function Collections() {
         <div className="flex flex-col gap-y-2">
           {collections.map((collection) => (
             <Collection key={collection.id} collection={collection}>
-              <Notes notes={notes} collectionId={collection.id} />
+              {/* <Notes notes={notes} collectionId={collection.id} /> */}
             </Collection>
           ))}
         </div>
