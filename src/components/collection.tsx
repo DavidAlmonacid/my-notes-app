@@ -12,10 +12,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
   collection: Pick<Collection, "id" | "name">;
-  // children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export function Collection({ collection }: Props) {
+export function Collection({ collection, children }: Props) {
   const [isOpened, setIsOpened] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -82,7 +82,7 @@ export function Collection({ collection }: Props) {
         </div>
       </summary>
 
-      {/* {children} */}
+      {children}
     </details>
   );
 }

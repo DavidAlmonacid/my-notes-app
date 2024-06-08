@@ -1,5 +1,6 @@
 "use client";
 
+import type { Note as INote } from "@prisma/client";
 import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -10,7 +11,7 @@ import { Input } from "./ui/input";
 
 interface Props {
   collectionId: string;
-  // notes: Partial<INote>[];
+  notes: Partial<INote>[];
 }
 
 export function Notes({ notes, collectionId }: Props) {
@@ -39,7 +40,7 @@ export function Notes({ notes, collectionId }: Props) {
   };
 
   const filteredNotes = notes.filter((note) => {
-    return note.collection_id === collectionId;
+    return note.collectionId === collectionId;
   });
 
   return (

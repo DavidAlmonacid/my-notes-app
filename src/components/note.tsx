@@ -1,3 +1,4 @@
+import type { Note } from "@prisma/client";
 import { TextCursorInput, Trash } from "lucide-react";
 
 import { Button } from "./ui/button";
@@ -9,7 +10,7 @@ import {
 } from "./ui/context-menu";
 
 interface Props {
-  // note: Partial<Note>;
+  note: Partial<Note>;
 }
 
 export function Note({ note }: Props) {
