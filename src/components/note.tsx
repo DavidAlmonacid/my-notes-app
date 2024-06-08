@@ -1,4 +1,3 @@
-import type { Note } from "@prisma/client";
 import { TextCursorInput, Trash } from "lucide-react";
 
 import { Button } from "./ui/button";
@@ -9,11 +8,7 @@ import {
   ContextMenuTrigger
 } from "./ui/context-menu";
 
-interface Props {
-  note: Partial<Note>;
-}
-
-export function Note({ note }: Props) {
+export function Note({ title }: { title: string }) {
   return (
     <ContextMenu>
       <ContextMenuTrigger>
@@ -22,7 +17,7 @@ export function Note({ note }: Props) {
           type="button"
           className="justify-start h-9 w-full"
         >
-          {note.title}
+          {title}
         </Button>
       </ContextMenuTrigger>
 
