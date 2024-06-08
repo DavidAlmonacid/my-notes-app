@@ -23,5 +23,5 @@ model Note {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   collectionId String     @db.Uuid
-  collection   Collection @relation(fields: [collectionId], references: [id])
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 }
