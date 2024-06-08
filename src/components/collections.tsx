@@ -1,15 +1,11 @@
 import prisma from "@/lib/prisma";
 import { Collection } from "./collection";
 import { Notes } from "./notes";
+import { NotesSection } from "./notes-section";
 
 export async function Collections() {
   const collections = await prisma.collection.findMany({
     select: { id: true, name: true },
-    orderBy: { createdAt: "asc" }
-  });
-
-  const notes = await prisma.note.findMany({
-    select: { id: true, title: true, collectionId: true },
     orderBy: { createdAt: "asc" }
   });
 
@@ -21,7 +17,9 @@ export async function Collections() {
         <div className="flex flex-col gap-y-2">
           {collections.map((collection) => (
             <Collection key={collection.id} collection={collection}>
-              <Notes notes={notes} collectionId={collection.id} />
+              <NotesSection collectionId={collection.id}>
+                <Notes collectionId={collection.id} />
+              </NotesSection>
             </Collection>
           ))}
         </div>
