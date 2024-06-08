@@ -1,24 +1,21 @@
 "use server";
 
-// import { createClient } from "edgedb";
 import { revalidatePath } from "next/cache";
 
-// import e from "@root/dbschema/edgeql-js";
-
-// const client = createClient();
+import prisma from "@/lib/prisma";
 
 export async function createCollection(formData: FormData) {
-  const collectionName = formData.get("collectionName") as string;
+  const collectionName = formData.get("collectionName")?.toString();
 
   if (!collectionName) {
     return;
   }
 
-  /* const query = e.insert(e.Collection, {
-    name: collectionName
+  await prisma.collection.create({
+    data: {
+      name: collectionName
+    }
   });
-
-  await query.run(client); */
 
   revalidatePath("/");
 }
