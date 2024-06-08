@@ -1,8 +1,10 @@
+import type { Collection } from "@prisma/client";
+
 import { updateCollectionName } from "@/actions/collection-actions";
 import { Input } from "./ui/input";
 
 interface Props {
-  // collection: Pick<Collection, "id" | "name">;
+  collection: Pick<Collection, "id" | "name">;
   endRename: () => void;
 }
 

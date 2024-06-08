@@ -1,5 +1,6 @@
 "use client";
 
+import type { Collection } from "@prisma/client";
 import clsx from "clsx";
 import { ChevronRight, EllipsisVertical } from "lucide-react";
 import { useState } from "react";
@@ -10,11 +11,11 @@ import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface Props {
-  // collection: Pick<Collection, "id" | "name">;
-  children: React.ReactNode;
+  collection: Pick<Collection, "id" | "name">;
+  // children: React.ReactNode;
 }
 
-export function Collection({ collection, children }: Props) {
+export function Collection({ collection }: Props) {
   const [isOpened, setIsOpened] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -81,7 +82,7 @@ export function Collection({ collection, children }: Props) {
         </div>
       </summary>
 
-      {children}
+      {/* {children} */}
     </details>
   );
 }
