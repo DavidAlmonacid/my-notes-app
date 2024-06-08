@@ -6,3 +6,4 @@
 - [x] List the notes in its respective collection
 - [x] Add interfaces to improve the type safety
 - [x] Style the note list
+- [ ] Show a confirmation dialog when deleting a not empty collection
