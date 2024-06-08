@@ -21,21 +21,17 @@ export async function createCollection(formData: FormData) {
 }
 
 export async function updateCollectionName(formData: FormData) {
-  const collectionName = formData.get("collectionName") as string;
+  const collectionName = formData.get("collectionName")?.toString();
   const collectionId = formData.get("collectionId") as string;
 
   if (!collectionName) {
     return;
   }
 
-  /* const query = e.update(e.Collection, () => ({
-    filter_single: { id: collectionId },
-    set: {
-      name: collectionName
-    }
-  }));
-
-  await query.run(client); */
+  await prisma.collection.update({
+    where: { id: collectionId },
+    data: { name: collectionName }
+  });
 
   revalidatePath("/");
 }
@@ -43,11 +39,7 @@ export async function updateCollectionName(formData: FormData) {
 export async function deleteCollection(formData: FormData) {
   const collectionId = formData.get("collectionId") as string;
 
-  /* const query = e.delete(e.Collection, () => ({
-    filter_single: { id: collectionId }
-  }));
-
-  await query.run(client); */
+  await prisma.collection.delete({ where: { id: collectionId } });
 
   revalidatePath("/");
 }
