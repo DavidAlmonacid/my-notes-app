@@ -5,9 +5,9 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
 export async function createCollection(formData: FormData) {
-  const collectionName = formData.get("collectionName")?.toString();
+  const collectionName = formData.get("collectionName")?.toString().trim();
 
-  if (!collectionName) {
+  if (!collectionName || collectionName.length > 25) {
     return;
   }
 
@@ -25,9 +25,13 @@ export async function updateCollectionName(
   currentCollectionName: string,
   formData: FormData
 ) {
-  const collectionName = formData.get("collectionName")?.toString();
+  const collectionName = formData.get("collectionName")?.toString().trim();
 
-  if (!collectionName || collectionName === currentCollectionName) {
+  if (
+    !collectionName ||
+    collectionName === currentCollectionName ||
+    collectionName.length > 25
+  ) {
     return;
   }
 
