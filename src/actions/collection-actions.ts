@@ -20,9 +20,11 @@ export async function createCollection(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function updateCollectionName(formData: FormData) {
-  const collectionId = formData.get("collectionId") as string;
-  const currentCollectionName = formData.get("currentCollectionName") as string;
+export async function updateCollectionName(
+  collectionId: string,
+  currentCollectionName: string,
+  formData: FormData
+) {
   const collectionName = formData.get("collectionName")?.toString();
 
   if (!collectionName || collectionName === currentCollectionName) {

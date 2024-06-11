@@ -19,6 +19,12 @@ export function RenameInputCollection({
 }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const renameCollectionName = updateCollectionName.bind(
+    null,
+    collection.id,
+    collection.name
+  );
+
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (event.relatedTarget !== summaryRef.current) {
       endRename();
@@ -29,13 +35,7 @@ export function RenameInputCollection({
   };
 
   return (
-    <form action={updateCollectionName} onSubmit={endRename}>
-      <input type="hidden" value={collection.id} name="collectionId" />
-      <input
-        type="hidden"
-        value={collection.name}
-        name="currentCollectionName"
-      />
+    <form action={renameCollectionName} onSubmit={endRename}>
       <Input
         type="text"
         className="h-fit p-0.5"
