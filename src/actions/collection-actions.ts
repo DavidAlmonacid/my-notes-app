@@ -21,10 +21,11 @@ export async function createCollection(formData: FormData) {
 }
 
 export async function updateCollectionName(formData: FormData) {
-  const collectionName = formData.get("collectionName")?.toString();
   const collectionId = formData.get("collectionId") as string;
+  const currentCollectionName = formData.get("currentCollectionName") as string;
+  const collectionName = formData.get("collectionName")?.toString();
 
-  if (!collectionName) {
+  if (!collectionName || collectionName === currentCollectionName) {
     return;
   }
 
