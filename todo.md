@@ -6,4 +6,7 @@
 - [x] List the notes in its respective collection
 - [x] Add interfaces to improve the type safety
 - [x] Style the note list
+- [x] Change popover for context menu in the collection
+- [ ] Allow to rename a note
+- [ ] Allow to delete a note
 - [ ] Show a confirmation dialog when deleting a not empty collection

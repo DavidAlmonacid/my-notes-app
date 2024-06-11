@@ -2,13 +2,18 @@
 
 import type { Collection } from "@prisma/client";
 import clsx from "clsx";
-import { ChevronRight, EllipsisVertical } from "lucide-react";
-import { useState } from "react";
+import { ChevronRight, TextCursorInput, Trash } from "lucide-react";
+import { useRef, useState } from "react";
 
 import { DeleteCollectionButton } from "./delete-collection-button";
 import { RenameInputCollection } from "./rename-input-collection";
 import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger
+} from "./ui/context-menu";
 
 interface Props {
   collection: Pick<Collection, "id" | "name">;
@@ -18,6 +23,7 @@ interface Props {
 export function Collection({ collection, children }: Props) {
   const [isOpened, setIsOpened] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const summaryRef = useRef<HTMLDetailsElement>(null);
 
   const handleToggle = (event: React.MouseEvent<HTMLDetailsElement>) => {
     setIsOpened(event.currentTarget.open);
@@ -32,54 +38,54 @@ export function Collection({ collection, children }: Props) {
   };
 
   return (
-    <details className="bg-accent/80 rounded-md" onToggle={handleToggle}>
-      <summary className="appearance-auto">
-        <div className="flex items-center justify-between p-2">
-          <div className="flex items-center gap-x-0.5 pr-1">
-            <ChevronRight
-              className={clsx("w-full max-w-5 h-5", isOpened && "rotate-90")}
-            />
-            {isEditing ? (
-              <RenameInputCollection
-                collection={collection}
-                endRename={handleEndRenameCollection}
-              />
-            ) : (
-              <span>{collection.name}</span>
-            )}
-          </div>
+    <details
+      className="bg-accent/80 rounded-md select-none"
+      onToggle={handleToggle}
+    >
+      <summary className="appearance-auto p-2" ref={summaryRef}>
+        {isEditing ? (
+          <RenameInputCollection
+            collection={collection}
+            endRename={handleEndRenameCollection}
+            summaryRef={summaryRef}
+          />
+        ) : (
+          <ContextMenu>
+            <ContextMenuTrigger>
+              <div className="flex items-center gap-x-0.5">
+                <ChevronRight
+                  className={clsx(
+                    "w-full max-w-5 h-5",
+                    isOpened && "rotate-90"
+                  )}
+                />
+                <span>{collection.name}</span>
+              </div>
+            </ContextMenuTrigger>
 
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                type="button"
-                className="size-fit p-0.5 opacity-80"
-                title="Options"
-              >
-                <EllipsisVertical className="size-5" />
-              </Button>
-            </PopoverTrigger>
-
-            <PopoverContent className="w-fit p-3">
-              <section className="flex flex-col gap-y-2 text-sm">
+            <ContextMenuContent className="p-2 min-w-36">
+              <ContextMenuItem className="p-0">
                 <Button
                   variant="ghost"
                   size="sm"
                   type="button"
+                  className="px-2 py-1.5 h-fit w-full justify-between"
                   onClick={handleRenameCollection}
                 >
-                  Rename
+                  <span>Rename</span>
+                  <TextCursorInput className="size-5" />
                 </Button>
+              </ContextMenuItem>
 
+              <ContextMenuItem className="p-0">
                 <DeleteCollectionButton collectionId={collection.id}>
-                  Delete
+                  <span>Delete</span>
+                  <Trash className="size-5 p-[1px]" />
                 </DeleteCollectionButton>
-              </section>
-            </PopoverContent>
-          </Popover>
-        </div>
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
+        )}
       </summary>
 
       {children}
