@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -13,6 +14,8 @@ interface Props {
 
 export function Sidebar({ children }: Props) {
   const [showInput, setShowInput] = useState(false);
+  const [inputLengthError, setInputLengthError] = useState(false);
+
   const plusButtonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -26,6 +29,23 @@ export function Sidebar({ children }: Props) {
 
   const handleCloseInput = () => {
     setShowInput(false);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(event.currentTarget);
+    const collectionNameLength = formData
+      .get("collectionName")
+      ?.toString()
+      .trim().length!;
+
+    if (collectionNameLength > 25) {
+      event.preventDefault();
+      setInputLengthError(true);
+      return;
+    }
+
+    handleCloseInput();
+    setInputLengthError(false);
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -55,13 +75,21 @@ export function Sidebar({ children }: Props) {
       </h2>
 
       {showInput && (
-        <form action={createCollection} onSubmit={handleCloseInput}>
+        <form action={createCollection} onSubmit={handleSubmit}>
           <Input
             type="text"
             name="collectionName"
             placeholder="Collection name"
-            className="px-2.5 py-1.5 mt-3 h-fit bg-input"
+            className={clsx(
+              "px-2.5 py-1.5 mt-3 h-fit bg-input",
+              inputLengthError && "focus-visible:ring-destructive"
+            )}
             maxLength={25}
+            title={
+              inputLengthError
+                ? "Collection name must be 25 characters or less"
+                : ""
+            }
             autoFocus
             ref={inputRef}
             onBlur={handleBlur}
