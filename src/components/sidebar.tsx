@@ -61,6 +61,7 @@ export function Sidebar({ children }: Props) {
             name="collectionName"
             placeholder="Collection name"
             className="px-2.5 py-1.5 mt-3 h-fit bg-input"
+            maxLength={25}
             autoFocus
             ref={inputRef}
             onBlur={handleBlur}

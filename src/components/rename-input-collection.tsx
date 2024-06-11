@@ -41,6 +41,7 @@ export function RenameInputCollection({
         className="h-fit p-0.5"
         defaultValue={collection.name}
         name="collectionName"
+        maxLength={25}
         autoFocus
         ref={inputRef}
         onBlur={handleBlur}
