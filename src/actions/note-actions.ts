@@ -4,9 +4,8 @@ import { revalidatePath } from "next/cache";
 
 import prisma from "@/lib/prisma";
 
-export async function createNote(formData: FormData) {
+export async function createNote(collectionId: string, formData: FormData) {
   const noteTitle = formData.get("noteTitle")?.toString();
-  const collectionId = formData.get("collectionId") as string;
 
   if (!noteTitle) {
     return;

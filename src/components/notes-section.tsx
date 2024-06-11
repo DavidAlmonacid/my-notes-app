@@ -17,6 +17,8 @@ export function NotesSection({ collectionId, children }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const addNoteButtonRef = useRef<HTMLButtonElement>(null);
 
+  const createCollectionNote = createNote.bind(null, collectionId);
+
   const handleOpenInput = () => {
     if (!showInput) {
       setShowInput(true);
@@ -40,8 +42,7 @@ export function NotesSection({ collectionId, children }: Props) {
   return (
     <div className="flex flex-col gap-y-4 py-4 px-7">
       {showInput && (
-        <form action={createNote} onSubmit={handleCloseInput}>
-          <input type="hidden" name="collectionId" value={collectionId} />
+        <form action={createCollectionNote} onSubmit={handleCloseInput}>
           <Input
             type="text"
             name="noteTitle"
