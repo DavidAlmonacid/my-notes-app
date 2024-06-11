@@ -63,7 +63,7 @@ export function Collection({ collection, children }: Props) {
               </div>
             </ContextMenuTrigger>
 
-            <ContextMenuContent className="p-2 min-w-36">
+            <ContextMenuContent className="flex flex-col gap-y-1.5 p-2 min-w-36">
               <ContextMenuItem className="p-0">
                 <Button
                   variant="ghost"
