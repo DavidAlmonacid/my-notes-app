@@ -38,7 +38,7 @@ export function NotesSection({ collectionId, children }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-y-4 py-4 px-7 select-none">
+    <div className="flex flex-col gap-y-4 py-4 px-7">
       {showInput && (
         <form action={createNote} onSubmit={handleCloseInput}>
           <input type="hidden" name="collectionId" value={collectionId} />
