@@ -1,13 +1,10 @@
-import prisma from "@/lib/prisma";
+import { getCollections } from "@/lib/db";
 import { Collection } from "./collection";
 import { Notes } from "./notes";
 import { NotesSection } from "./notes-section";
 
 export async function Collections() {
-  const collections = await prisma.collection.findMany({
-    select: { id: true, name: true },
-    orderBy: { createdAt: "asc" }
-  });
+  const collections = await getCollections();
 
   return (
     <div className="pt-4 text-sm">

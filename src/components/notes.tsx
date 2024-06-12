@@ -1,12 +1,8 @@
-import prisma from "@/lib/prisma";
+import { getNotesByCollectionId } from "@/lib/db";
 import { Note } from "./note";
 
 export async function Notes({ collectionId }: { collectionId: string }) {
-  const notes = await prisma.note.findMany({
-    select: { id: true, title: true },
-    orderBy: { createdAt: "asc" },
-    where: { collectionId }
-  });
+  const notes = await getNotesByCollectionId(collectionId);
 
   if (notes.length === 0) {
     return;

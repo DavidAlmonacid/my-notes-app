@@ -7,7 +7,7 @@
 - [x] Add interfaces to improve the type safety
 - [x] Style the note list
 - [x] Change popover for context menu in the collection
+- [x] Separate the query logic from the components
 - [ ] Allow to rename a note
 - [ ] Allow to delete a note
 - [ ] Show a confirmation dialog when deleting a not empty collection
-- [ ] Separate the query logic from the components
