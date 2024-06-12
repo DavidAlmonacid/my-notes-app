@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { ChevronRight, TextCursorInput, Trash } from "lucide-react";
 
+import type { Collection } from "@/types/interfaces";
 import { DeleteCollectionButton } from "./delete-collection-button";
 import { Button } from "./ui/button";
 import {
@@ -11,10 +12,7 @@ import {
 } from "./ui/context-menu";
 
 interface Props {
-  collection: {
-    id: string;
-    name: string;
-  };
+  collection: Collection;
   isOpened: boolean;
   handleRenameCollection: () => void;
 }

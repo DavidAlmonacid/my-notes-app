@@ -1,13 +1,13 @@
 "use client";
 
-import type { Collection } from "@prisma/client";
 import { useRef } from "react";
 
 import { updateCollectionName } from "@/actions/collection-actions";
+import type { Collection } from "@/types/interfaces";
 import { Input } from "./ui/input";
 
 interface Props {
-  collection: Pick<Collection, "id" | "name">;
+  collection: Collection;
   endRename: () => void;
   summaryRef: React.RefObject<HTMLDetailsElement>;
 }

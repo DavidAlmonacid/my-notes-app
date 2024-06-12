@@ -1,13 +1,13 @@
 "use client";
 
-import type { Collection } from "@prisma/client";
 import { useRef, useState } from "react";
 
+import type { Collection } from "@/types/interfaces";
 import { CollectionName } from "./collection-name";
 import { RenameInputCollection } from "./rename-input-collection";
 
 interface Props {
-  collection: Pick<Collection, "id" | "name">;
+  collection: Collection;
   children: React.ReactNode;
 }
 
