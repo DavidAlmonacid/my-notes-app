@@ -21,6 +21,25 @@ export async function createNote(collectionId: string, formData: FormData) {
   revalidatePath("/");
 }
 
+export async function updateNoteTitle(
+  noteId: string,
+  currentNoteTitle: string,
+  formData: FormData
+) {
+  const noteTitle = formData.get("noteTitle")?.toString();
+
+  if (!noteTitle || noteTitle === currentNoteTitle) {
+    return;
+  }
+
+  await prisma.note.update({
+    where: { id: noteId },
+    data: { title: noteTitle }
+  });
+
+  revalidatePath("/");
+}
+
 export async function deleteNote(formData: FormData) {
   const noteId = formData.get("noteId") as string;
   const collectionId = formData.get("collectionId") as string;

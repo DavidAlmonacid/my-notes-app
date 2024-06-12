@@ -8,6 +8,6 @@
 - [x] Style the note list
 - [x] Change popover for context menu in the collection
 - [x] Separate the query logic from the components
-- [ ] Allow to rename a note
+- [x] Allow to rename a note
 - [x] Allow to delete a note
 - [ ] Show a confirmation dialog when deleting a not empty collection

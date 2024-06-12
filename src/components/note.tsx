@@ -1,5 +1,9 @@
-import { TextCursorInput, Trash } from "lucide-react";
+"use client";
 
+import { TextCursorInput, Trash } from "lucide-react";
+import { useState } from "react";
+
+import { updateNoteTitle } from "@/actions/note-actions";
 import type { PartialNote } from "@/types/interfaces";
 import { DeleteNoteButton } from "./delete-note-button";
 import { Button } from "./ui/button";
@@ -9,6 +13,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger
 } from "./ui/context-menu";
+import { Input } from "./ui/input";
 
 interface Props {
   note: PartialNote;
@@ -16,7 +21,30 @@ interface Props {
 }
 
 export function Note({ note, collectionId }: Props) {
-  return (
+  const [isEditing, setIsEditing] = useState(false);
+
+  const renameNoteTitle = updateNoteTitle.bind(null, note.id, note.title);
+
+  const handleRenameNote = () => {
+    setIsEditing(true);
+  };
+
+  const handleEndRenameNote = () => {
+    setIsEditing(false);
+  };
+
+  return isEditing ? (
+    <form action={renameNoteTitle} onSubmit={handleEndRenameNote}>
+      <Input
+        type="text"
+        className="h-fit p-1.5"
+        defaultValue={note.title}
+        name="noteTitle"
+        maxLength={25}
+        autoFocus
+      />
+    </form>
+  ) : (
     <ContextMenu>
       <ContextMenuTrigger>
         <Button
@@ -35,6 +63,7 @@ export function Note({ note, collectionId }: Props) {
             size="sm"
             type="button"
             className="px-2 py-1.5 h-fit w-full justify-between"
+            onClick={handleRenameNote}
           >
             <span>Rename</span>
             <TextCursorInput className="size-5" />
