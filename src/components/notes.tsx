@@ -11,7 +11,7 @@ export async function Notes({ collectionId }: { collectionId: string }) {
   return (
     <section className="flex flex-col gap-y-1">
       {notes.map((note) => (
-        <Note key={note.id} title={note.title} />
+        <Note key={note.id} note={note} collectionId={collectionId} />
       ))}
     </section>
   );
