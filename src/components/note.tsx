@@ -42,6 +42,7 @@ export function Note({ note, collectionId }: Props) {
         name="noteTitle"
         maxLength={25}
         autoFocus
+        onBlur={handleEndRenameNote}
       />
     </form>
   ) : (
