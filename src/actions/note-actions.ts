@@ -5,9 +5,9 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
 export async function createNote(collectionId: string, formData: FormData) {
-  const noteTitle = formData.get("noteTitle")?.toString();
+  const noteTitle = formData.get("noteTitle")?.toString().trim();
 
-  if (!noteTitle) {
+  if (!noteTitle || noteTitle.length > 25) {
     return;
   }
 
@@ -26,9 +26,9 @@ export async function updateNoteTitle(
   currentNoteTitle: string,
   formData: FormData
 ) {
-  const noteTitle = formData.get("noteTitle")?.toString();
+  const noteTitle = formData.get("noteTitle")?.toString().trim();
 
-  if (!noteTitle || noteTitle === currentNoteTitle) {
+  if (!noteTitle || noteTitle === currentNoteTitle || noteTitle.length > 25) {
     return;
   }
 
