@@ -25,6 +25,12 @@ export function RenameInputCollection({
     collection.name
   );
 
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === " " || event.code === "Space") {
+      event.preventDefault();
+    }
+  };
+
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     if (event.relatedTarget !== summaryRef.current) {
       endRename();
@@ -44,6 +50,7 @@ export function RenameInputCollection({
         maxLength={25}
         autoFocus
         ref={inputRef}
+        onKeyUp={handleKeyUp}
         onBlur={handleBlur}
       />
     </form>
