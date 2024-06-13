@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { createNote } from "@/actions/note-actions";
 import { Button } from "./ui/button";
@@ -14,8 +14,23 @@ interface Props {
 
 export function NotesSection({ collectionId, children }: Props) {
   const [showInput, setShowInput] = useState(false);
+  const [collectionNotesLength, setCollectionNotesLength] = useState(0);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const addNoteButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `/api/collection-notes-count/${collectionId}`
+      );
+      const data: Record<string, number> = await response.json();
+
+      setCollectionNotesLength(data.count);
+    }
+
+    fetchData();
+  });
 
   const createCollectionNote = createNote.bind(null, collectionId);
 
@@ -32,7 +47,10 @@ export function NotesSection({ collectionId, children }: Props) {
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (event.relatedTarget === addNoteButtonRef.current) {
+    if (
+      event.relatedTarget === addNoteButtonRef.current &&
+      collectionNotesLength > 0
+    ) {
       event.preventDefault();
     } else {
       handleCloseInput();

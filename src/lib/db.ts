@@ -19,3 +19,7 @@ export async function getNotesByCollectionId(collectionId: string) {
 
   return notes;
 }
+
+export async function getNotesLengthByCollectionId(collectionId: string) {
+  return await prisma.note.count({ where: { collectionId } });
+}
