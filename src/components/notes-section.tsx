@@ -20,16 +20,9 @@ export function NotesSection({ collectionId, children }: Props) {
   const addNoteButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `/api/collection-notes-count/${collectionId}`
-      );
-      const data: Record<string, number> = await response.json();
-
-      setCollectionNotesLength(data.count);
-    }
-
-    fetchData();
+    fetch(`/api/collection-notes-count/${collectionId}`)
+      .then((response) => response.json())
+      .then(({ count }) => setCollectionNotesLength(count));
   });
 
   const createCollectionNote = createNote.bind(null, collectionId);
