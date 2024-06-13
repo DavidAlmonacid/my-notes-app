@@ -51,7 +51,7 @@ export function Note({ note, collectionId }: Props) {
         <Button
           variant="ghost"
           type="button"
-          className="justify-start h-9 w-full"
+          className="justify-start h-9 w-full font-normal focus-visible:ring-offset-0"
         >
           {note.title}
         </Button>
