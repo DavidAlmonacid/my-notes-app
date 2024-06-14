@@ -4,16 +4,25 @@ import { Button } from "./ui/button";
 interface Props {
   collectionId: string;
   children: React.ReactNode;
+  formWidth?: string;
+  className?: string;
+  size?: "default" | "sm" | "lg" | "icon";
 }
 
-export function DeleteCollectionButton({ collectionId, children }: Props) {
+export function DeleteCollectionButton({
+  collectionId,
+  children,
+  formWidth,
+  className,
+  size = "default"
+}: Props) {
   return (
-    <form action={deleteCollection} className="w-full">
+    <form action={deleteCollection} className={formWidth}>
       <input type="hidden" name="collectionId" value={collectionId} />
       <Button
         variant="destructive"
-        size="sm"
-        className="px-2 py-1.5 h-fit w-full justify-between bg-destructive/40 hover:bg-destructive/50"
+        size={size}
+        className={className}
         type="submit"
       >
         {children}
