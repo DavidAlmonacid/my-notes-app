@@ -30,7 +30,7 @@ export function Collection({ collection, children }: Props) {
 
   return (
     <details
-      className="bg-accent/80 rounded-md select-none"
+      className="bg-accent/60 rounded-md select-none"
       onToggle={handleToggle}
     >
       <summary className="appearance-auto p-2" ref={summaryRef}>
