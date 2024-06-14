@@ -10,4 +10,4 @@
 - [x] Separate the query logic from the components
 - [x] Allow to rename a note
 - [x] Allow to delete a note
-- [ ] Show a confirmation dialog when deleting a not empty collection
+- [x] Show a confirmation dialog when deleting a not empty collection
