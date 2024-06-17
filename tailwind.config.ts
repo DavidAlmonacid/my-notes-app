@@ -19,7 +19,8 @@ const config = {
       }
     },
     fontFamily: {
-      sans: ["var(--font-sans)", ...fontFamily.sans]
+      sans: ["var(--font-sans)", ...fontFamily.sans],
+      mono: ["var(--font-mono)", ...fontFamily.mono]
     },
     extend: {
       colors: {

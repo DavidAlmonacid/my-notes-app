@@ -1,14 +1,8 @@
-import type { Metadata } from "next";
-import { Poppins as FontSans } from "next/font/google";
-import "./globals.css";
+import { fontSans } from "@/app/fonts";
 import { Header } from "@/components/header";
 import { cn } from "@/lib/utils";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700"]
-});
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "My Notes App",
