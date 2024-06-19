@@ -23,3 +23,9 @@ export async function getNotesByCollectionId(collectionId: string) {
 export async function getNotesLengthByCollectionId(collectionId: string) {
   return await prisma.note.count({ where: { collectionId } });
 }
+
+export async function getNoteById(noteId: string) {
+  return await prisma.note.findUnique({
+    where: { id: noteId }
+  });
+}
