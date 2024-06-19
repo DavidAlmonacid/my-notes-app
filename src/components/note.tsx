@@ -4,6 +4,7 @@ import { TextCursorInput, Trash } from "lucide-react";
 import { useState } from "react";
 
 import { updateNoteTitle } from "@/actions/note-actions";
+import { useNoteId } from "@/context/note-id-context";
 import type { PartialNote } from "@/types/interfaces";
 import { DeleteNoteButton } from "./delete-note-button";
 import { Button } from "./ui/button";
@@ -22,6 +23,7 @@ interface Props {
 
 export function Note({ note, collectionId }: Props) {
   const [isEditing, setIsEditing] = useState(false);
+  const { setNoteId } = useNoteId();
 
   const renameNoteTitle = updateNoteTitle.bind(null, note.id, note.title);
 
@@ -52,6 +54,7 @@ export function Note({ note, collectionId }: Props) {
           variant="ghost"
           type="button"
           className="justify-start h-9 w-full font-normal focus-visible:ring-offset-0"
+          onClick={() => setNoteId(note.id)}
         >
           {note.title}
         </Button>
