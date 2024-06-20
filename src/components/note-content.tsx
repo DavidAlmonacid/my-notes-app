@@ -13,17 +13,20 @@ export function NoteContent() {
 
   useEffect(() => {
     if (!noteId) {
+      setNote(null);
       return;
     }
 
     fetch(`/api/get-note/${noteId}`)
       .then((response) => response.json())
-      .then((data) => {
-        setNote(data.note);
-      });
+      .then(({ note }) => setNote(note));
   }, [noteId]);
 
-  return (
+  return !note ? (
+    <div className="grow px-10 py-5 font-mono text-center">
+      Select a note to view its content
+    </div>
+  ) : (
     <div className={cn("grow px-10 py-5 font-mono", fontMono.variable)}>
       <Input
         aria-label="Note title"
