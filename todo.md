@@ -13,4 +13,4 @@
 - [x] Show a confirmation dialog when deleting a not empty collection
 - [x] Show the note title in the note content component
 - [x] Show the updated date in the note content component
-- [ ] Show the note content in the note content component
+- [x] Show the note content in the note content component
