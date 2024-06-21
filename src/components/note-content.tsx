@@ -11,6 +11,7 @@ import { Textarea } from "./ui/textarea";
 export function NoteContent() {
   const [note, setNote] = useState<Note | null>(null);
   const [noteTitle, setNoteTitle] = useState("");
+  const [noteContent, setNoteContent] = useState("");
 
   const { noteId } = useNoteId();
 
@@ -25,6 +26,7 @@ export function NoteContent() {
       .then(({ note }) => {
         setNote(note);
         setNoteTitle(note.title);
+        setNoteContent(note.content);
       });
   }, [noteId]);
 
@@ -37,6 +39,20 @@ export function NoteContent() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ title: event.target.value })
+    });
+  };
+
+  const handleContentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setNoteContent(event.target.value);
+
+    fetch(`/api/update-note-content/${noteId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ content: event.target.value })
     });
   };
 
@@ -70,10 +86,10 @@ export function NoteContent() {
       </div>
 
       <Textarea
-        // value={note?.content}
-        defaultValue={note?.content}
+        value={noteContent}
         placeholder="Note content"
         className="grow mt-9 mb-2 resize-none focus-visible:ring-0"
+        onChange={handleContentChange}
       />
     </div>
   );

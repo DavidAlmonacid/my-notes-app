@@ -15,5 +15,5 @@
 - [x] Show the updated date in the note content component
 - [x] Show the note content in the note content component
 - [x] Update the note title
-- [ ] Update the note content
+- [x] Update the note content
 - [ ] Implement a debounce for the note title and content updates

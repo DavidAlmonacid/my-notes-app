@@ -36,3 +36,10 @@ export async function updateNoteTitle(noteId: string, title: string) {
     data: { title }
   });
 }
+
+export async function updateNoteContent(noteId: string, content: string) {
+  return await prisma.note.update({
+    where: { id: noteId },
+    data: { content }
+  });
+}
