@@ -1,10 +1,11 @@
 "use client";
 
+import type { Note } from "@prisma/client";
+import { useEffect, useState } from "react";
+
 import { fontMono } from "@/app/fonts";
 import { useNoteId } from "@/context/note-id-context";
 import { cn } from "@/lib/utils";
-import type { Note } from "@prisma/client";
-import { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
