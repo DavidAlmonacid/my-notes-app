@@ -65,7 +65,7 @@ export function NoteContent() {
             dateStyle: "full",
             timeStyle: "medium",
             hour12: false
-          }).format(new Date(note?.updatedAt || 0))}
+          }).format(new Date(note.updatedAt))}
         </span>
       </div>
 
