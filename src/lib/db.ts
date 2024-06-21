@@ -29,3 +29,10 @@ export async function getNoteById(noteId: string) {
     where: { id: noteId }
   });
 }
+
+export async function updateNoteTitle(noteId: string, title: string) {
+  return await prisma.note.update({
+    where: { id: noteId },
+    data: { title }
+  });
+}
