@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { fontMono } from "@/app/fonts";
 import { useNoteId } from "@/context/note-id-context";
+import { useDebounce } from "@/hooks/useDebounce";
 import { cn } from "@/lib/utils";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -13,6 +14,8 @@ export function NoteContent() {
   const [note, setNote] = useState<Note | null>(null);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
+  const debouncedNoteTitle = useDebounce(noteTitle, 1000);
+  const debouncedNoteContent = useDebounce(noteContent, 1000);
 
   const { noteId } = useNoteId();
 
@@ -31,30 +34,46 @@ export function NoteContent() {
       });
   }, [noteId]);
 
+  useEffect(() => {
+    if (!note) {
+      return;
+    }
+
+    if (debouncedNoteTitle && debouncedNoteTitle !== note.title) {
+      fetch(`/api/update-note-title/${noteId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title: debouncedNoteTitle })
+      });
+    }
+  }, [debouncedNoteTitle]);
+
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNoteTitle(event.target.value);
-
-    fetch(`/api/update-note-title/${noteId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ title: event.target.value })
-    });
   };
+
+  useEffect(() => {
+    if (!note) {
+      return;
+    }
+
+    if (debouncedNoteContent && debouncedNoteContent !== note.content) {
+      fetch(`/api/update-note-content/${noteId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ content: debouncedNoteContent })
+      });
+    }
+  }, [debouncedNoteContent]);
 
   const handleContentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setNoteContent(event.target.value);
-
-    fetch(`/api/update-note-content/${noteId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ content: event.target.value })
-    });
   };
 
   return !note ? (
