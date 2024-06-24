@@ -17,5 +17,5 @@
 - [x] Update the note title
 - [x] Update the note content
 - [x] Implement a debounce for the note title and content updates
-- [ ] Increase the length of the note title
+- [x] Increase the length of the note title
 - [ ] Update the note title in the note list sidebar section
