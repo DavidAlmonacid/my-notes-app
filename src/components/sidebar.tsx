@@ -84,7 +84,7 @@ export function Sidebar({ children }: Props) {
               "px-2.5 py-1.5 mt-3 h-fit bg-input",
               inputLengthError && "focus-visible:ring-destructive"
             )}
-            maxLength={25}
+            maxLength={35}
             title={
               inputLengthError
                 ? "Collection name must be 25 characters or less"

@@ -92,6 +92,7 @@ export function NoteContent() {
           aria-label="Note title"
           value={noteTitle}
           className="text-xl border-0 focus-visible:ring-0"
+          maxLength={35}
           onChange={handleTitleChange}
         />
         <hr />

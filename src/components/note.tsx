@@ -42,7 +42,7 @@ export function Note({ note, collectionId }: Props) {
         className="h-fit p-1.5"
         defaultValue={note.title}
         name="noteTitle"
-        maxLength={25}
+        maxLength={35}
         autoFocus
         onBlur={handleEndRenameNote}
       />

@@ -59,7 +59,7 @@ export function NotesSection({ collectionId, children }: Props) {
             name="noteTitle"
             placeholder="Note title"
             className="p-1 h-fit bg-input"
-            maxLength={25}
+            maxLength={35}
             autoFocus
             ref={inputRef}
             onBlur={handleBlur}
