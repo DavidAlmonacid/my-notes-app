@@ -53,10 +53,11 @@ export function Note({ note, collectionId }: Props) {
         <Button
           variant="ghost"
           type="button"
-          className="justify-start h-9 w-full font-normal focus-visible:ring-offset-0"
+          title={note.title}
+          className="justify-start h-9 w-full font-normal text-start focus-visible:ring-offset-0"
           onClick={() => setNoteId(note.id)}
         >
-          {note.title}
+          <span className="w-full truncate">{note.title}</span>
         </Button>
       </ContextMenuTrigger>
 
