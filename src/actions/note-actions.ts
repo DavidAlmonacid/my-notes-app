@@ -7,7 +7,7 @@ import prisma from "@/lib/prisma";
 export async function createNote(collectionId: string, formData: FormData) {
   const noteTitle = formData.get("noteTitle")?.toString().trim();
 
-  if (!noteTitle || noteTitle.length > 25) {
+  if (!noteTitle || noteTitle.length > 35) {
     return;
   }
 
@@ -28,7 +28,7 @@ export async function updateNoteTitle(
 ) {
   const noteTitle = formData.get("noteTitle")?.toString().trim();
 
-  if (!noteTitle || noteTitle === currentNoteTitle || noteTitle.length > 25) {
+  if (!noteTitle || noteTitle === currentNoteTitle || noteTitle.length > 35) {
     return;
   }
 
